@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nanoshell.c                                        :+:      :+:    :+:   */
+/*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wleite <wleite@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/03 19:26:26 by wleite            #+#    #+#             */
-/*   Updated: 2021/12/03 22:04:11 by wleite           ###   ########.fr       */
+/*   Created: 2021/12/03 22:03:35 by wleite            #+#    #+#             */
+/*   Updated: 2021/12/03 22:03:45 by wleite           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "nanoshell.h"
 
-int	main(void)
+int	take_input(char *str)
 {
-	char	input_string[MAXCOM];
-	char	*parsed_args[MAXLIST];
-	char	*parsed_args_piped[MAXLIST];
-	int		exec_flag;
+	char	*buf;
 
-	exec_flag = 0;
-	init_shell();
-	while (1)
+	buf = readline("\001\033[93m\002>>> \001\033[0m\002");
+	if (ft_strlen(buf) != 0)
 	{
-		if (take_input(input_string))
-			continue ;
-		exec_flag = process_string(input_string, parsed_args,
-				parsed_args_piped);
-		if (exec_flag == 1)
-			exec_args(parsed_args);
-		if (exec_flag == 2)
-			exec_args_piped(parsed_args, parsed_args_piped);
+		add_history(buf);
+		ft_strlcpy(str, buf, ft_strlen(buf) + 1);
+		return (0);
 	}
-	return (0);
+	else
+		return (1);
 }

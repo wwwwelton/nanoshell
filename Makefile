@@ -1,7 +1,7 @@
 LIBFT_PATH		=	./libraries/libft
 LIBFT			=	$(LIBFT_PATH)/libft.a
 
-SOURCES_FILES	=	nanoshell.c
+SOURCES_FILES	=	nanoshell.c builtin.c parse.c prompt.c system.c utils.c
 
 SOURCES_DIR		=	sources
 
@@ -20,13 +20,15 @@ RM				=	rm -rf
 
 CFLAGS			=	-Wall -Wextra -Werror
 
+LINKS			=	-lreadline
+
 $(OBJ_DIR)/%.o:		$(SOURCES_DIR)/%.c $(HEADER)
 					$(CC) $(CFLAGS) -c $< -o $@
 
 all:				$(NAME)
 
 $(NAME):			$(LIBFT) $(OBJ_DIR) $(OBJECTS) $(HEADER)
-					$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) -o $(NAME)
+					$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) $(LINKS) -o $(NAME)
 
 $(LIBFT):
 					$(MAKE) -C $(LIBFT_PATH) bonus
