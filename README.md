@@ -10,6 +10,10 @@ A [shell](https://en.wikipedia.org/wiki/Shell_(computing)) is a special user pro
 ## Getting started
 **Follow the steps below**
 ```bash
+# Requirements: GNU Readline Library
+# To install the readline library, open the terminal window and write
+sudo apt-get install libreadline-dev
+
 # Clone the project and access the folder
 git clone https://github.com/wwwwelton/nanoshell && cd nanoshell/
 
